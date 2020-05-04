@@ -1,0 +1,4 @@
+*.js linguist-detectable=true
+*.HTML linguist-detectable=true
+*.CSS linguist-detectable=false
+*.MongoDB linguist-detectable=false
