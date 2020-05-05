@@ -3,6 +3,9 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require('mongoose');
 var Campgrounds = require('./models/campground');
+var seedDB = require("./seeds");
+
+seedDB();
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.set('view engine', 'ejs');
