@@ -1,21 +1,21 @@
 var mongoose   = require('mongoose');
 var Campground = require('./models/campground');
-var Comment    = require('./models/campground');
+var Comment    = require('./models/comment');
 
 var data = [{
         name: "Cloud's Rest",
-        image: "https://picsum.photos/536/354",
-        desccription: "blah blah blah"
+        image: "https://s3-media0.fl.yelpcdn.com/bphoto/QdsK3qmSXZje7ByxwJ_8ZA/348s.jpg",
+        description: "blah blah blah"
     },
     {
         name: "Desert's Messa",
-        image: "https://teakdoor.com/images/imported/2020/04/703.jpg",
-        desccription: "blah blah blah"
+        image: "https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?auto=format&fit=crop&w=1050&q=80",
+        description: "blah blah blah"
     },
     {
         name: "Cloud's Rest",
-        image: "https://picsum.photos/seed/picsum/536/354",
-        desccription: "blah blah blah"
+        image: "https://4.bp.blogspot.com/-KWDrAZVRY6w/VOV9lW239YI/AAAAAAAAJfc/Pf8Rf_bkzGg/s1600/carnaval_02.jpg",
+        description: "blah blah blah"
     },
 ]
 
@@ -28,12 +28,12 @@ function seedDB(){
         } else{
             console.log("Removed Campgrounds!");
             data.forEach(function(seed){
-                Campground.create(seed, function(err, data){
+                Campground.create(seed, function(err, campground){
                     if(err){
                         console.log(err);
                         
                     } else{
-                        console.log("Added a campground with details: \n" + data);
+                        console.log("Added a campground");
                         Comment.create({
                             text: "This place is greate, But I with I had planned a picnic",
                             author: "Robert di wiede!"
@@ -42,14 +42,17 @@ function seedDB(){
                                 console.log(err);
                                 
                             } else {
-                                console.log(comment);
-                                
+                                campground.comments.push(comment);
+                                campground.save();
+                                console.log("added a new comment");
+                                                                
                             }
-                        })
-
+                            
+                        });
                     }
-                    
+
                 });
+                    
             });
         }
     });
