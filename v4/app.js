@@ -1,10 +1,10 @@
-var express = require('express')
-var app = express();
-var bodyParser = require("body-parser");
-var mongoose = require('mongoose');
+var express     = require('express')
+var app         = express();
+var bodyParser  = require("body-parser");
+var mongoose    = require('mongoose');
 var Campgrounds = require('./models/campground');
-var seedDB = require("./seeds");
-
+var seedDB      = require("./seeds");
+var Comment     = require('./models/comment');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.set('view engine', 'ejs');
@@ -12,7 +12,6 @@ app.set('view engine', 'ejs');
 mongoose.connect('mongodb://localhost/yelp_camp_v3', {useNewUrlParser: true, useUnifiedTopology: true});
 
 //seedDB();
-
 
 // Campgrounds.create({
 //   name: "Granite creek",
@@ -84,6 +83,32 @@ app.get('/campgrounds/:id/comments/new', function(req, res){
     }
   })
 });
+
+app.post('/campgrounds/:id/comments', function(req, res){
+  
+  Campgrounds.findById(req.params.id, function(err, campground){
+    if(err){
+      console.log(err);
+      res.redirect('/campgrounds');
+      
+    } else {
+      
+      Comment.create(req.body, function(err, comment){
+        if(err){
+          console.log(err);
+          
+        } else {
+          campground.comments.push(comment);
+          campground.save();
+          console.log(comment);          
+          console.log(campground);
+          res.redirect('/campgrounds/'+ campground._id);
+          
+        }
+      })
+    }
+  })
+})
 
 app.listen('3000', function(){
   console.log("\nServer started successfully");

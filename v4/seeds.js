@@ -21,7 +21,7 @@ var data = [{
 
 function seedDB(){
 
-    Campground.remove({}, function(err){
+    Campground.deleteMany({}, function(err){
         if(err){
             console.log(err);
             
@@ -35,7 +35,7 @@ function seedDB(){
                     } else{
                         console.log("Added a campground");
                         Comment.create({
-                            text: "This place is greate, But I with I had planned a picnic",
+                            text: "This place is great, But I had planned a picnic",
                             author: "Robert di wiede!"
                         }, function(err, comment){
                             if(err){
