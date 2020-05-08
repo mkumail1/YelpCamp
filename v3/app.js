@@ -75,9 +75,10 @@ app.get("/campgrounds/:id", function(req, res){
 });
 
 app.get('campgrounds/:id/comments/new', function(req, res){
-  
+
 });
 
 app.listen('3000', function(){
   console.log("\nServer started successfully");
 });
+
