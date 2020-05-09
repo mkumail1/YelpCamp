@@ -7,6 +7,7 @@ var seedDB      = require("./seeds");
 var Comment     = require('./models/comment');
 
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
 
 mongoose.connect('mongodb://localhost/yelp_camp_v3', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -90,7 +91,6 @@ app.post('/campgrounds/:id/comments', function(req, res){
     if(err){
       console.log(err);
       res.redirect('/campgrounds');
-      
     } else {
       
       Comment.create(req.body, function(err, comment){
