@@ -1,13 +1,26 @@
 <%- include ('../partials/header') -%>
 
+<div class="row">
+   <div class="col-md-3">
+      <p class="lead">YelpCamp</p>
+      <li class="list-group-item active">Info 1</li>
+      <li class="list-group-item">Info 2</li>
+      <li class="list-group-item">Info 3</li>
+   </div>
+   <div class="col-md-9">
+      <img src="<%= campground.image %>" alt="" class="img-responsive" />
+      <h4><%= campground.name %></h4>
+
+   </div>
+</div>
+
 <h1>This is the show template</h1>
 
-<h4><%= campground.name %></h4>
-<img src="<%= campground.image %>" alt="">
 <p><%= campground.description %></p>
-<p><a class="btn btn-success" href="/campgrounds/<%=campground._id%>/comments/new">Add a new comment</a></p>
+<p>
+   <a class="btn btn-success" href="/campgrounds/<%=campground._id%>/comments/new">Add a new comment</a>
+</p>
 <% campground.comments.forEach(function(comment){ %>
-   <p><Strong>Author </Strong> - <%= comment.author %> </p>
-   <p><Strong>Text </Strong> - <%= comment.text %> </p>
+<p><Strong>Author </Strong> - <%= comment.author %></p>
+<p><Strong>Text </Strong> - <%= comment.text %></p>
 <% }) %>
-
