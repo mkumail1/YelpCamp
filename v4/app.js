@@ -25,8 +25,6 @@ mongoose.connect('mongodb://localhost/yelp_camp_v3', {useNewUrlParser: true, use
 //   }
 // });
 
-
-
 app.get('/', function(req, res){
   res.render("landing");
 });
@@ -105,10 +103,10 @@ app.post('/campgrounds/:id/comments', function(req, res){
           res.redirect('/campgrounds/'+ campground._id);
           
         }
-      })
+      });
     }
-  })
-})
+  });
+});
 
 app.listen('3000', function(){
   console.log("\nServer started successfully");
