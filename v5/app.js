@@ -14,17 +14,6 @@ mongoose.connect('mongodb://localhost/yelp_camp_v3', {useNewUrlParser: true, use
 
 //seedDB();
 
-// Campgrounds.create({
-//   name: "Granite creek",
-//   image: 'https://live.staticflickr.com/962/27441695367_08716b50a4_b.jpg'
-// }, function(err, campground){
-//   if(err){
-//     console.log("Oopps an error occurred");
-//   } else{
-//     console.log("Save to database: \n" + campground);
-//   }
-// });
-
 app.get('/', function(req, res){
   res.render("landing");
 });
