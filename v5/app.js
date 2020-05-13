@@ -5,6 +5,8 @@ var mongoose    = require('mongoose');
 var Campgrounds = require('./models/campground');
 var seedDB      = require("./seeds");
 var Comment     = require('./models/comment');
+var passport    = require('passport');
+var localStrategy = require('passport-local');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(__dirname + "/public"));
