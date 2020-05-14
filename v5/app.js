@@ -23,11 +23,17 @@ app.use(require('express-session')({
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate())); //for local check of authentication
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 mongoose.connect('mongodb://localhost/yelp_camp_v3', { useNewUrlParser: true, useUnifiedTopology: true });
+
+//for rendering some current data to all local res requests
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next();
+});
 
 //seedDB();
 
@@ -61,6 +67,13 @@ app.post('/campgrounds', function (req, res) {
 
 });
 
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } 
+  res.redirect('/login');
+}
+
 app.get("/campgrounds/new", function (req, res) {
   res.render("campgrounds/new");
 });
@@ -77,7 +90,7 @@ app.get("/campgrounds/:id", function (req, res) {
   });
 });
 
-app.get('/campgrounds/:id/comments/new', function (req, res) {
+app.get('/campgrounds/:id/comments/new', isLoggedIn, function (req, res) {
   Campgrounds.findById(req.params.id, function (err, campground) {
     if (err) {
       console.log(err);
