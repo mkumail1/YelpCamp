@@ -2,3 +2,4 @@
 *.HTML linguist-detectable=false
 *.CSS linguist-detectable=false
 *.MongoDB linguist-detectable=false
+node_modules/

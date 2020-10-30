@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+
+<script>
+    console.log("dwwww");
+     const queryString = window.location.search;
+     console.log(queryString);
+     const urlParams = new URLSearchParams(queryString);
+     console.log(urlParams);
+     const product = urlParams.get('error');
+        console.log(product.toString);
+</script>
+<style>
+    #error{
+        color: red;
+        padding-left: 0.5rem;
+        display: none;
+    }
+    .jumbotron
+    {
+
+        padding: 1rem !important;
+        width: 40%;
+        margin: 2rem auto;
+    }
+</style>
+<div class="jumbotron">
+    
+    <div class="column">
+        <div></div>
+        <h1 style="margin: 1rem auto;text-align: center;">Create new Campgrounds</h1>
+        <hr>
+        <div style="width: 100%; margin: 3rem auto; position: relative; margin-bottom: 1rem;">
+            <form action="/campgrounds" method="POST">
+                <div class="form-group">   <input class="form-control" type="text" placeholder="name" name="name" re ></div>
+                <div class="form-group">   <input class="form-control" type="number" placeholder="price/night" name="price" min="0.01" step="0.01" required></div>
+                <div class="form-group"><input class="form-control" type="text" placeholder="image url" name="image" id="url" required>
+                    <span id="error">Invalid Url! Enter again.</span>
+                </div>
+                <div class="form-group"><textarea name="description" class="form-control"  rows="5" placeholder="Description......"></textarea>
+                   
+                </div>
+                <div class="form-group"><input class="form-control" type="text" placeholder="Location" name="location" id="url" required>
+                
+                </div>
+                <div class="form-group">
+                    <button id="btn"class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+               
+            </form>
+            <a style="position: relative; bottom: 0px;" href="/campgrounds">Go Back</a>
+        </div>
+        
+       
+    </div>
+    
+</div>
+
+<%- include('../partials/footer') %>

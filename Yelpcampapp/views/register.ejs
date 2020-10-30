@@ -1,0 +1,12 @@
+<%- include('./partials/header') -%>
+
+
+<div class="container">
+    <h1 style="text-align: center;">Register Page</h1>
+    <form action="/register" method="POST" class="input-group">
+        <input class="form-control more" type="text"placeholder="Username" name="username"  required>
+        <input class="form-control more" type="password" placeholder="Password" name="password" required>
+        <button type="submit" class="btn btn-primary form-control more" >Submit</button>
+    </form>
+</div>
+<%- include('./partials/footer') -%>
