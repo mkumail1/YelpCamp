@@ -1,4 +1,5 @@
-var express = require("express"),
+require("dotenv").config({ path: ".env.dev" });
+const express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
   mongoose = require("mongoose"),
@@ -8,20 +9,25 @@ var express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   User = require("./models/user"),
-  port = process.env.PORT || 8080;
+  port = process.env.PORT || 8080,
+  URI = process.env.URI;
 
 var indexRoute = require("./routes/index"),
   campgroundsRoute = require("./routes/campgrounds"),
   commentRoute = require("./routes/comments");
 
-mongoose.connect("mongodb://localhost/yelp_camp_v3", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose
+  .connect(URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Successfully Connected to MongoDB"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
+
+//mongodb://localhost/yelp_camp_v3
 
 //passporrt configuration
 app.use(
