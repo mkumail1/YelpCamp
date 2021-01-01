@@ -3,3 +3,6 @@
 *.CSS linguist-detectable=false
 *.MongoDB linguist-detectable=false
 node_modules/
+
+# Local Netlify folder
+.netlify
