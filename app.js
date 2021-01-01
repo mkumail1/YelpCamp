@@ -48,7 +48,7 @@ app.use("/campgrounds", campgroundsRoute);
 app.use("/campgrounds/:id/comments", commentRoute);
 app.use("/", indexRoute);
 app.use("*", (req, res) => {
-  res.send("Opps page not found");
+  res.render("error");
 });
 
 //seedDB();
