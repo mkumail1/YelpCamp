@@ -60,5 +60,5 @@ app.use("*", (req, res) => {
 //seedDB();
 
 app.listen(port, function () {
-  console.log("\nServer started successfully: port '" + port + "'");
+  console.log("\nServer started successfully on http://localhost:" + port);
 });
