@@ -3,8 +3,8 @@
 *.CSS linguist-detectable=false
 *.MongoDB linguist-detectable=false
 node_modules/
+package-lock.json
 
 # Local Netlify folder
 .netlify
 .env.dev
-package-lock.json
